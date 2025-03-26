@@ -33,7 +33,7 @@ const ShowProducts:FC<ShowProductsInterface> = (
 
         <div className={`${contentHeading && "-mt-16"} md:ml-10 flex justify-center md:justify-evenly flex-wrap gap-5 md:gap-14 w-full md:w-[80%]`}>
             {
-                products.map((product)=>{
+                products.length > 0 && products.map((product)=>{
                     return <>
                         <Product
                             key={product.id}

@@ -47,11 +47,6 @@ export const fetchUserOrders = async ({userid,setLoading,dispatch}:UserPlacedOrd
   
       return response.data;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.error(error.response?.data?.message || "Failed to fetch user details");
-      } else {
-        console.error("Error fetching user details:", error);
-      }
-      return null;
+      console.log(error);
     }
   };
