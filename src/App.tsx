@@ -50,7 +50,6 @@ function App() {
     }
   }
 
-
   useEffect(()=>{
     getAllProducts();
     fetchUserDetails(dispatch);
