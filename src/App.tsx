@@ -53,7 +53,7 @@ function App() {
   useEffect(()=>{
     getAllProducts();
     fetchUserDetails(dispatch);
-  })
+  },[dispatch])
   
   return (
     <div className="flex flex-col min-h-screen">
