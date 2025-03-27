@@ -25,7 +25,7 @@ const ProductDetails = () => {
         setLoading(true);
         try {
             const response = await axios.get(`${backendUrl}/products/${productId}`);
-            console.log(response)
+            // console.log(response)
             setProduct(response.data.data.productDTO);
             setSimilarProducts(response.data.data.similarProducts);
         } catch (error) {

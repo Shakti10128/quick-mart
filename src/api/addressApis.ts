@@ -14,15 +14,15 @@ export const fetchAddressesOfUser = async ({
   setLoading,
   setAddresses
 }: FetchAddressesParams) => {
-  console.log(userid);
+  // console.log(userid);
   setLoading(true);
   try {
     const response = await axios.get(`${backendUrl}/addresses/user/${userid}`, {
       withCredentials: true,
     });
-    console.log(response.data); // debugging
+    // console.log(response.data); // debugging
     setAddresses(response.data.data);
-    toast(response.data.message);
+    // toast(response.data.message);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       toast(error.response?.data.errorMessage || "Error fetching addresses");

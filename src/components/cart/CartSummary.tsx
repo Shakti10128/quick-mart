@@ -44,7 +44,7 @@ const CartSummary: FC<CartSummaryInterface> = ({ cartProducts }) => {
     }
     // adding the product into user state of buying product, when buying will removed the products from
     // there
-    console.log(cartProducts);
+    // console.log(cartProducts);
     dispatch(setBuyProduct(cartProducts));
     dispatch(setTotalPriceOfBuyingProdcuts(finalAmount));
     navigate("/user/address");

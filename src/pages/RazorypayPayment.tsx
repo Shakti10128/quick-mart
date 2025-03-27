@@ -37,8 +37,8 @@ const RazorypayPayment = () => {
   useEffect(() => {
     const productids = getIdsOfBuyingProduct();
     setProductIds(productids);
-    console.log(productids);
-    console.log("totalPrice ", totalPriceOfBuyingProduct);
+    // console.log(productids);
+    // console.log("totalPrice ", totalPriceOfBuyingProduct);
     // if user refresh the page then the session will be destroy so go again cart page to buy
     if(buyProduct.length === 0){
         navigate("/cart",{replace:true});
@@ -47,11 +47,17 @@ const RazorypayPayment = () => {
     if (userid) {
       initiateOrderWithRazorypay({ userid, totalPriceOfBuyingProduct, setLoading, dispatch });
     }
+
+    // when the component will unmount will redirect to again cart page, coz session got desroyed
+    // after page refresh
+    return (()=>{
+        navigate("/cart",{replace:true});
+    })
   }, []);
 
   const razorpayPaymentHandler = async()=>{
     if(userid && orderId && productIds.length > 0){
-        console.log(addressId,orderId,productIds,totalPriceOfBuyingProduct,userid);
+        // console.log(addressId,orderId,productIds,totalPriceOfBuyingProduct,userid);
         await handlePayment({addressId,orderId,productIds,totalPriceOfBuyingProduct,userid,navigate,dispatch,setLoading});
     }
     else{

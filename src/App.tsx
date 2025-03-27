@@ -14,7 +14,6 @@ import Cart from './pages/Cart'
 import ContactUs from './pages/ContactUs'
 import Footer from './components/common/Footer'
 import AboutUs from './pages/AboutUs'
-import Order from './pages/Order'
 import axios, {isAxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -73,7 +72,6 @@ function App() {
               <Route path='/support' element={<ContactUs/>}/>
               <Route path='/about-us' element={<AboutUs/>}/>
               <Route path='/user/address' element={<Address/>}/>
-              <Route path='/cart/order' element={<Order/>} />
               <Route path='/user/orders/:addressid/payment' element={<RazorypayPayment/>}/>
             </Routes>
             <Footer/>

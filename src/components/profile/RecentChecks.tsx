@@ -12,7 +12,7 @@ const RecentChecks = () => {
           <div className="h-[50vh] w-full bg-white shadow-2xl border-2 rounded-md">
               <div className="h-full w-full flex flex-col justify-center items-center">
                 <h1 className="font-extrabold md:text-4xl">
-                  Looks like you haven't searched 
+                  Looks like you haven't explored
                   <br />
                 </h1>
                 <h1 className="font-extrabold md:text-4xl mb-5">

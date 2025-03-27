@@ -97,7 +97,7 @@ const Address: React.FC = () => {
 
   const proccedWithSelectedAddressHandler = ()=>{
     if(selectedAddress === null){
-      toast("Please select address");
+      toast.info("Please select address");
       return;
     }
     else{

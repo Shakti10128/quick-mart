@@ -23,7 +23,6 @@ const UserOrders = () => {
     // only will only when when user will refresh the page
     if(user?.id && userOrders.length === 0) {
       const userid = user?.id;
-      console.log("calling api for fetching orders")
       fetchUserOrders({userid ,setLoading,dispatch});
     }
   },[user])
@@ -35,7 +34,7 @@ const UserOrders = () => {
   return (
     <div className="my-8 w-full px-2 md:px-20">
         {
-          userOrders.length > 0 ? <ShowProducts products={userOrders} btnType="buy now"/>
+          userOrders.length > 0 ? <ShowProducts products={userOrders} btnType="add to cart"/>
           : (
             <div className="h-[50vh] w-full bg-white shadow-2xl border-2 rounded-md">
               <div className="h-full w-full flex flex-col justify-center items-center">

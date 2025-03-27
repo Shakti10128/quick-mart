@@ -26,8 +26,8 @@ export const initiateOrderWithRazorypay = async(
       const response = await axios.get(`${backendUrl}/orders/create-orders/${userid}/${totalPriceOfBuyingProduct}`,{
         withCredentials:true
       })
-      console.log(response.data);
-      console.log(response.data.razorpayResponse);
+      // console.log(response.data);
+      // console.log(response.data.razorpayResponse);
       dispatch(setRazorpayOrderid(response.data.razorpayResponse.id));
       
     } catch (error) {
@@ -99,7 +99,7 @@ export const handlePayment = async (
     image: `${logo}`,
     handler: async (response: SuccessResponse) => {
       setLoading(true);
-      console.log("✅ Payment Successful:", response);
+      // console.log("✅ Payment Successful:", response);
 
       // ✅ Show a persistent loading toast until verification completes
       const toastId = toast.loading("Verifying payment, please wait...");
@@ -159,8 +159,8 @@ export const handlePayment = async (
       }, 5000);
     },
     prefill: {
-      name: "John Doe",
-      email: "johndoe@example.com",
+      name: "shakti kumar",
+      email: "shakti@example.com",
       contact: "9999999999",
     },
     theme: {
