@@ -2,16 +2,27 @@ import { useState, useEffect } from "react";
 import SearchBar from "../common/SearchBar";
 import { BsCartPlus } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { AiOutlineLogout } from "react-icons/ai";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "@/Slices/cartSlice";
+import { logout } from "@/api/userApis";
+import { AppDispatch } from "@/Store/Store";
+import { selectUserState } from "@/Slices/userSlice";
 
 const Navbar = () => {
     const [active, setActive] = useState<string>("");
     const [isSticky, setIsSticky] = useState<boolean>(false);
 
+    const token = useSelector(selectUserState).token;
+
     const cart = useSelector(selectCart);
+    const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+
+    const logoutHandler = async()=>{
+        logout({navigate,dispatch});
+    }
 
 
     useEffect(() => {
@@ -64,22 +75,17 @@ const Navbar = () => {
 
                 {/* search bar */}
                 <SearchBar />
-                <div className="flex flex-col md:hidden">
-                    {cart.cartItems.length > 0 && (
-                        <span className="-mb-2.5 ml-2 text-green-500 font-semibold" >
-                            {cart.cartItems.length}
-                        </span>
-                    )}
+                {
+                    token &&
                     <Link to={"/cart"}>
-                        <AiOutlineShoppingCart className="h-6 w-6 cursor-pointer"/>
+                        <AiOutlineLogout className="h-7 w-7 hover:cursor-pointer md:hidden"
+                        onClick={logoutHandler}/>
                     </Link>
-                </div>
+                }
                 {/* user profile and cart */}
                 <div className="hidden md:flex ml-10">
                     <div className="flex gap-7">
-                        <Link to={"/cart"}>
-                            <BsCartPlus className="h-7 w-7 hover:cursor-pointer" />
-                        </Link>
+                        <BsCartPlus className="h-7 w-7 hover:cursor-pointer" title="Logout"/>
 
                         {cart.cartItems.length > 0 && (
                             <span className="-ml-12 -mt-4  text-green-500 font-semibold" >
@@ -90,6 +96,13 @@ const Navbar = () => {
                         <Link to={"/profile"}>
                             <FaRegUserCircle className="h-7 w-7 hover:cursor-pointer" />
                         </Link>
+                        {
+                            token &&
+                            <Link to={"/cart"}>
+                                <AiOutlineLogout className="h-7 w-7 hover:cursor-pointer"
+                                onClick={logoutHandler}/>
+                            </Link>
+                        }
                     </div>
                 </div>
             </div>

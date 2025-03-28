@@ -2,6 +2,7 @@ import { setToken, setUser, setUserOrders } from "@/Slices/userSlice";
 import { AppDispatch } from "@/Store/Store";
 import { backendUrl } from "@/utils/staticDataAndVariable";
 import axios from "axios";
+import { NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface UserPlacedOrderInterface {
@@ -50,3 +51,28 @@ export const fetchUserOrders = async ({userid,setLoading,dispatch}:UserPlacedOrd
       console.log(error);
     }
   };
+
+
+interface LogoutInterface{
+  navigate:NavigateFunction;
+  dispatch:AppDispatch
+}
+
+export const logout = async({navigate,dispatch}:LogoutInterface)=>{
+  try {
+    const response = await axios.get(`${backendUrl}/users/logout`,{
+      withCredentials:true
+    });
+    if(response.status === 200){
+      console.log(response.data);
+      toast(response.data.message);
+      dispatch(setToken(null));
+      navigate("/");
+    }
+    else{
+      console.log("logout process failder");
+    }
+  } catch (error) {
+    console.log("something went wrong",error);
+  }
+}
