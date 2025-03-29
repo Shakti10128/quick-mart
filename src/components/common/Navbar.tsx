@@ -85,7 +85,8 @@ const Navbar = () => {
                 {/* user profile and cart */}
                 <div className="hidden md:flex ml-10">
                     <div className="flex gap-7">
-                        <BsCartPlus className="h-7 w-7 hover:cursor-pointer" title="Logout"/>
+                        <BsCartPlus className="h-7 w-7 hover:cursor-pointer" 
+                        onClick={logoutHandler}/>
 
                         {cart.cartItems.length > 0 && (
                             <span className="-ml-12 -mt-4  text-green-500 font-semibold" >
